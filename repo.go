@@ -28,18 +28,17 @@ func main() {
 
 // ¯\_(ツ)_/¯
 func GetUrl(url string) string {
-	r, _ := regexp.Compile(`origin\s*http([a-z]://.+)*.git`)
+	r := regexp.MustCompile(`origin\s*http([a-z]://.+)*.git`)
 
 	switch r.MatchString(url) {
 	case true:
-		url = strings.Replace(r.FindString(url), ".git", "", 1)
+		url = r.FindString(url)
 	default:
-		url = strings.Replace(url, ":", "/", -1)
+		r := regexp.MustCompile(`^origin(.*)git@(.*)git`)
+		url = strings.Replace(r.FindString(url), ":", "/", -1)
 		url = strings.Replace(url, `git@`, "https://", 1)
-		r, _ := regexp.Compile(`.git\s*\(([a-z]+)\)`)
-		url = r.ReplaceAllString(url, "")
 	}
-
+	url = strings.Replace(url, ".git", "", 1)
 	url = strings.Replace(url, "origin", "", 1)
 	url = strings.TrimSpace(url)
 
