@@ -26,7 +26,9 @@ func getRemote() string {
 		log.Fatal("Go inside git repo!")
 	}
 	url := string(remote)
-	r, _ := regexp.Compile("http([a-z]://.+)*.git")
+	r, _ := regexp.Compile(`origin\s*http([a-z]://.+)*.git`)
 	url = strings.Replace(r.FindString(url), ".git", "", 1)
+	url = strings.Replace(url, "origin", "", 1)
+	url = strings.TrimSpace(url)
 	return url
 }
