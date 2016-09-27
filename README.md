@@ -12,3 +12,5 @@ inside git repository run
 ```
 repo
 ```
+
+It will go to homepage of that project
