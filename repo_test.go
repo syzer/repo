@@ -19,6 +19,15 @@ origin	git@git.intern.orange-food.net:agentur-liip/ch.orange-food.produkte.git (
 	assert.Equal(t, expected, GetUrl(test_case), "works for ssh remote")
 }
 
+func TestGetUrl4(t *testing.T)  {
+	test_case := `heroku	https://git.heroku.com/murmuring-island-99377.git (fetch)
+heroku	https://git.heroku.com/murmuring-island-99377.git (push)
+origin	https://github.com/syzer/poker-player-go (fetch)
+origin	https://github.com/syzer/poker-player-go (push)`
+	expected  := `https://github.com/syzer/poker-player-go`
+	assert.Equal(t, expected, GetUrl(test_case), "works for with heroku remotes too")
+}
+
 func TestGetUrl2(t *testing.T) {
 	test_case := `origin  https://github.com/syzer/repo.git (fetch)`
 	expected := `https://github.com/syzer/repo`
