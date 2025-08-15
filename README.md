@@ -4,6 +4,8 @@ Opens github/gitlab homepage of that project... and notify you when you forgot t
 
 ## install
 ```
+go install github.com/syzer/repo@latest
+#or
 go get github.com/syzer/repo
 ```
 
